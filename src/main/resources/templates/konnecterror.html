@@ -10,7 +10,7 @@
 
 <style>
 table {
-  font-family: 10px Arial, sans-serif;
+  font-family: 6px Arial, sans-serif;
   border-collapse: collapse;
   width: 100%;
 }
@@ -18,7 +18,7 @@ table {
 td, th {
   border: 1px solid #dddddd;
   text-align: left;
-  padding: 8px;
+  padding: 1px;
 }
 
 ul {
@@ -59,10 +59,10 @@ div
 
 <ul>
   
-  <li class="active"><a href="http://localhost:8082/Konnect/konnecterror">Customer Errors</a></li>
-  <li><a href="http://localhost:8082/Konnect/fixed">Fixed</a></li>
-  <li><a href="http://localhost:8082/Konnect/solution">Solution</a></li>
-  <li style="float:right"><a class="active" href="http://localhost:8082/Konnect/about">About</a></li>
+  <li class="active"><a href="/Konnect/konnecterror">Customer Errors</a></li>
+  <li><a href="/Konnect/fixed">Fixed</a></li>
+  <li><a href="/Konnect/solution">Solution</a></li>
+  <li style="float:right"><a class="active" href="/Konnect/about">About</a></li>
 </ul>
 
 <H2><div align = center>Customer Errors</div></H2>
@@ -75,20 +75,21 @@ div
 <table>
             <thead>
                 <tr>
-                    <th> Error Number</th>
+                    <th> Error #</th>
                     <th> Product Id</th>
                     <th> Error Source </th>
                     <th> Source Version</th>
                     <th> Error Code</th>
                     <th> Error Category</th>
-                    <th> Error Description</th>
+                    <th> Transcript</th>
+                    <th> Description</th>
                     <th> Created Date</th>
-                    <th> Integrate with Jira </th>
+                    <th>Jira Upload </th>
                 </tr>
             </thead>
             <tbody>
     		<tr th:if="${error_tbls.empty}">
-         	   <td colspan="9"> No Errors Available </td>
+         	   <td colspan="10"> No Errors Available </td>
         	</tr>
         	<tr th:each="error_tbl : ${error_tbls}">
          	<td><span th:text="${error_tbl.error_number}"> Error Number </span></td>
@@ -97,13 +98,14 @@ div
          	<td><span th:text="${error_tbl.source_version}"> Source Version </span></td>
          	<td><span th:text="${error_tbl.error_code}"> Error Code </span></td>
          	<td><span th:text="${error_tbl.error_category}"> Error Category </span></td>
+         	<td size="20"><span th:text="${error_tbl.error_transcript}"> Error Transcript </span></td>
          	<td><span th:text="${error_tbl.error_description}"> Error Description </span></td>
           	<td><span th:text="${error_tbl.created_date}"> Created Date </span></td>
           	  <form action="/Konnect/updatejiraerror" method="post">
           	    <input type="hidden" th:name = 'error_number' th:value="${error_tbl.error_number}">
           	    <input type="hidden" th:name = 'error_description' th:value="${error_tbl.error_description}">
           	    <input type="hidden" th:name = 'page_num' th:value="${page_num}">
-          	  	<td><input type="submit" name="Jira" value="Integrate with Jira"></td>
+          	  	<td><input type="submit" name="Jira" value="Jira Upload"></td>
           	  </form>
         	</tr>
     </tbody>

@@ -1,6 +1,5 @@
 package com.konnect.dao;
 
-import java.util.Collection;
 
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
@@ -15,12 +14,12 @@ import com.konnect.model.error_tbl;
 public interface error_tblRepository extends CrudRepository<error_tbl, Integer> {
 	
     @Query(
-			value = "SELECT * FROM konnect_error where JIRA_FLAG=0 order by created_date desc", 
+			value = "SELECT * FROM konnect_error where JIRA_FLAG =0 order by created_date desc", 
 				nativeQuery = true)
 			Page<error_tbl> findAllErrorsJiraFalse(Pageable p);
 	
 	@Query(
-			value = "SELECT * FROM konnect_error u where u.SOLUTION_FLAG=0 and u.JIRA_FLAG=1 order by created_date desc", 
+			value = "SELECT * FROM konnect_error u where u.SOLUTION_FLAG =0 and u.JIRA_FLAG=1 order by created_date desc", 
 			nativeQuery = true)
 			Page<error_tbl> findAllErrorsSolutionFalseJiraTrue(Pageable p);
 	@Query(

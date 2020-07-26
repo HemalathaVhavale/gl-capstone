@@ -16,6 +16,7 @@ public class error_tbl{
 		 public String  error_code;
 		 public String error_source;
 		 public String error_description;
+		 public String error_transcript;
 		 public String error_category;
 		 public String solution;
 	     public String source_version;
