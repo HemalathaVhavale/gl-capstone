@@ -209,6 +209,7 @@ public class MainController {
  @GetMapping("/about")
  public String about() {
 	return "about";
- }	 
+ }	
+
 }
 
